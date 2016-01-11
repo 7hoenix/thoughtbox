@@ -1,19 +1,23 @@
-<%= form_for @link_presenter.blank_link do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :url %>
-  <%= f.text_field :url %>
-  <%= f.label :read_status %>
-  <%= f.select :status, options_for_select([false, true]) %>
-  <%= f.submit "Create Link" %>
-<% end %>
+  <%= form_for @link_presenter.blank_link do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+    <%= f.label :read_status %>
+    <%= f.select :status, options_for_select([false, true]) %>
+    <%= f.submit "Create Link" %>
+  <% end %>
 
-<% @link_presenter.links.each do |link| %>
-  <div class="<%= link.status_class %>">
-    <%= link.title %>
-    <%= link.url %>
-    <%= link.status %>
-    <%= link_to link.status_text, change_status_path(:link_id => link.id) %>
-    <%= link_to "Edit", edit_link_path(link) %>
-  </div>
-<% end %>
+<div class="links-index">
+  <%= react_component "Links", {links: @link_presenter.links} %>
+  <% @link_presenter.links.each do |link| %>
+    <div class="link-" + <%= link.id %> + " <%= link.status_class %>">
+      <% link.title %>
+      <% link.url %>
+      <% link.status %>
+      <% link_to link.status_text, change_status_path(:link_id => link.id) %>
+      <% link_to "Edit", edit_link_path(link) %>
+    </div>
+  <% end %>
+</div>
+
