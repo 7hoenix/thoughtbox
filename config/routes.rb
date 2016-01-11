@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
 
   resources :users, only: [:new, :create, :index, :show]
-  resources :links, only: [:new, :create, :index, :show]
+  resources :links, only: [:new, :create, :index, :show, :update]
+
+  get "/change_status", to: "links#update"
 end

@@ -9,7 +9,10 @@
 <% end %>
 
 <% @link_presenter.links.each do |link| %>
-  <%= link.title %>
-  <%= link.url %>
-  <%= link.status %>
+  <div class="<%= link.status_class %>">
+    <%= link.title %>
+    <%= link.url %>
+    <%= link.status %>
+    <%= link_to link.status_text, change_status_path(:link_id => link.id) %>
+  </div>
 <% end %>
