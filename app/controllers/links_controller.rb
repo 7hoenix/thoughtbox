@@ -14,11 +14,25 @@ class LinksController < ApplicationController
     end
   end
 
+  def edit
+    @link = Link.find(params[:id])
+  end
+
   def update
-    link = Link.find(params[:link_id])
-    link.status ? link.status = false : link.status = true
-    link.save
-    redirect_to links_path
+    if params[:link_id]
+      link = Link.find(params[:link_id])
+      link.status ? link.status = false : link.status = true
+      link.save
+      redirect_to links_path
+    else
+      link = Link.find(params[:id])
+      if link.update_attributes(link_params)
+        redirect_to links_path
+      else
+        flash[:notice] = "Must enter a valid link"
+        redirect_to links_path
+      end
+    end
   end
 
   private

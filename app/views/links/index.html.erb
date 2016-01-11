@@ -14,5 +14,6 @@
     <%= link.url %>
     <%= link.status %>
     <%= link_to link.status_text, change_status_path(:link_id => link.id) %>
+    <%= link_to "Edit", edit_link_path(link) %>
   </div>
 <% end %>
