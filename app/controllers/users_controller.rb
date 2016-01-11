@@ -17,11 +17,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    session[:current_user_id] = nil
-    redirect_to login_path
-  end
-
   private
 
     def user_params

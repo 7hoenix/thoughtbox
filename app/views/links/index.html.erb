@@ -1,0 +1,15 @@
+<%= form_for @link_presenter.blank_link do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+  <%= f.label :read_status %>
+  <%= f.select :status, options_for_select([false, true]) %>
+  <%= f.submit "Create Link" %>
+<% end %>
+
+<% @link_presenter.links.each do |link| %>
+  <%= link.title %>
+  <%= link.url %>
+  <%= link.status %>
+<% end %>
