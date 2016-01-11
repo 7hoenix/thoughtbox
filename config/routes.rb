@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root 'static#home'
   get "login", to: "sessions#new"
+  get "logout", to: "sessions#destroy"
   post "login", to: "sessions#create"
-  get "links", to: "users#show"
 
   resources :users, only: [:new, :create, :index, :show]
+  resources :links, only: [:new, :create, :index, :show]
 end
