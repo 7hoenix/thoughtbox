@@ -3,8 +3,8 @@
   <%= f.text_field :title %>
   <%= f.label :url %>
   <%= f.text_field :url %>
-  <%= f.label :status %>
-  <%= f.select :status, options_for_select([true, false]) %>
+  <%= f.label :read_status %>
+  <%= f.select :status, options_for_select([false, true]) %>
   <%= f.submit "Create Link" %>
 <% end %>
 
