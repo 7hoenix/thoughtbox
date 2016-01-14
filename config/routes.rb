@@ -7,5 +7,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :index, :show]
   resources :links, only: [:new, :create, :index, :show, :edit, :update]
 
+  namespace :api do
+    namespace :v1, defaults: { format: :json } do
+      resources :links, only: [:index, :create, :update]
+    end
+  end
+
   get "/change_status", to: "links#update"
 end
